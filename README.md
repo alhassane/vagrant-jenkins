@@ -7,7 +7,7 @@ Using Vagrant, a Makefile and shell provisoner scripts allows the easy creation 
 Install:
 
 
-[Vagrant >=1.4.3](http://www.vagrantup.com/downloads.html)
+[Vagrant >=1.6.0](http://www.vagrantup.com/downloads.html)
 
 [VirtualBox >= 4.3.6](https://www.virtualbox.org/wiki/Downloads)
 
@@ -19,7 +19,7 @@ _For Ubuntu 13.10 users, these dependencies can be installed with ./scripts/setu
 With requirements satisfied the following three commands will result in Jenkins being available on [http://localhost:9999/](http://localhost:9999/):
 
     git clone git@github.com:igniteflow/jenkins-vagrant.git
-    cd jenkins-vagrant
+    cd vagrant-jenkins
     make install
 
 Here are some options to customise your instance:
@@ -50,3 +50,8 @@ remote Git and Google Code repositories.
 ## Future
 
 Use a different provisioners - Chef, Puppet, Salt, Docker (?) to be OS agnostic
+
+## memento
+
+### to get a console as the jenkins
+sudo su – jenkins 

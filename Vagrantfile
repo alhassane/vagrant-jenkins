@@ -21,7 +21,7 @@ Vagrant.configure('2') do |config|
         s.privileged = true
     end
 
-  config.vbguest.auto_update = true
+    config.vbguest.auto_update = true
 end
 
 
