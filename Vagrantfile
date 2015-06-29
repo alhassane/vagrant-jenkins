@@ -1,10 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
  
-# Load settings
-personalization = File.expand_path("../provisioners/parameters", __FILE__)
-load personalization
- 
 # Requierements
 Vagrant.require_version ">= 1.6.0"
 VAGRANTFILE_API_VERSION = "2"
