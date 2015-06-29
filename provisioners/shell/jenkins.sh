@@ -22,10 +22,7 @@ sudo useradd -u 5678 -g `getent group nogroup | cut -d: -f3` -m -d /var/lib/jenk
 sudo apt-get -y install jenkins
 
 # install jenkins plugins
-while read line
-do
-echo "$line" | sudo -u jenkins xargs -P 5 -n 1 wget -nv -T 60 -t 3 -P /var/lib/jenkins/plugins
-done < "/vagrant/jenkins/plugins"
+/vagrant/provisioners/shell/jenkins-plugins.sh
 
 # symlink jenkins jobs
 sudo rm -rf /var/lib/jenkins/jobs
