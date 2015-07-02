@@ -1,22 +1,39 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
  
+# Load settings
+personalization = File.expand_path("../provisioners/parameters", __FILE__)
+load personalization
+ 
 # Requierements
 Vagrant.require_version ">= 1.6.0"
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure('2') do |config|
-    config.vm.box = 'ubuntu/trusty64'
-    config.vm.box_url = 'https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box'
+    # Setup box
+    config.vm.box = $box_name
+    config.vm.box_url = $box_url
+
+    # Set Hostname
+    config.vm.host_name = $vm_hostname
+
+    # Set the default project share
+    config.vm.synced_folder ".",  $vm_group, id: "vagrant-root", :nfs => true
+    config.vm.synced_folder "./", $vm_www_point, create: false, type: "nfs"
+ 
+    # Configure Virtualbox
+    config.vm.provider "virtualbox" do |v|
+      v.gui = $vm_gui
+      v.name = $vm_name
+      #v.name = (0...8).map { (65 + rand(26)).chr }.join
+      v.customize ["modifyvm", :id, "--groups",          $vm_group,
+                                    "--cpuexecutioncap", $vm_cpu_cap,
+                                    "--memory",          $vm_memory,
+                                    "--cpus",            $vm_cpus]
+    end
 
     # Create a private network, which allows host-only access to the machine using a specific IP.
-    config.vm.network :private_network, ip: "192.168.33.30"
-
-    config.vm.synced_folder ".", "/vagrant", id: "vagrant-root", :nfs => true
-
-    config.vm.provider :virtualbox do |vb|
-      vb.customize ['modifyvm', :id, '--memory', '1024', '--natdnsproxy1', 'on']
-    end
+    config.vm.network :private_network, ip: $vm_ip
 
     # Shell provisioning
     config.vm.provision "shell" do |s|

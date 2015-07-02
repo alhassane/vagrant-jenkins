@@ -3,4 +3,5 @@
 config.json
 jenkins/jobs/*
 provisioners/shell/project.sh
+provisioners/parameters
 id_rsa.pub
