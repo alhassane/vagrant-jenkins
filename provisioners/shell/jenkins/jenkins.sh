@@ -40,6 +40,9 @@ echo "*** symlink SSH public key .id_rsa.pub ***"
 mkdir -p /var/lib/jenkins/.ssh
 sudo ln -fs /vagrant/id_rsa.pub /var/lib/jenkins/.ssh/id_rsa.pub
 
+# register jenkins in the boot 
+sudo update-rc.d jenkins defaults 
+
 echo "*** restart jenkins ***"
 sudo service jenkins restart
 
