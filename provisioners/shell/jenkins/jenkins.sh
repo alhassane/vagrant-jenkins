@@ -33,18 +33,26 @@ echo "*** install jenkins plugins ***"
 /vagrant/provisioners/shell/jenkins/jenkins-plugins.sh
 
 echo "*** symlink jenkins jobs ***"
+unlink /vagrant/jenkins/jobs
 sudo rm -rf /var/lib/jenkins/jobs
-sudo ln -fs /vagrant/jenkins/jobs/ /var/lib/jenkins/jobs
+ln -fs /vagrant/jenkins/jobs/ /var/lib/jenkins/jobs
 
 echo "*** symlink SSH public key .id_rsa.pub ***"
 mkdir -p /var/lib/jenkins/.ssh
 sudo ln -fs /vagrant/id_rsa.pub /var/lib/jenkins/.ssh/id_rsa.pub
 
+echo "*** we change the password ***"
+sudo passwd jenkins # psw=jenkins
+
+echo "*** we add user in the sudoers file ***"
+echo "jenkins ALL = (ALL) ALL" | sudo tee --append /etc/sudoers
+
 # register jenkins in the boot 
 sudo update-rc.d jenkins defaults 
 
 echo "*** restart jenkins ***"
-sudo service jenkins restart
+sudo service jenkins stop
+sudo service jenkins start
 
 echo "*** cleanup ***"
 sudo apt-get -y autoremove

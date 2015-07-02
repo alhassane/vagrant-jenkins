@@ -16,7 +16,7 @@ _For Ubuntu 13.10 users, these dependencies can be installed with ./scripts/setu
 
 ## Getting Started
 
-With requirements satisfied the following three commands will result in Jenkins being available on [http://192.168.33.30/](http://192.168.33.30/):
+With requirements satisfied the following three commands will result in Jenkins being available on [http://192.168.33.30:8080](http://192.168.33.30:8080):
 
     git clone git@github.com:igniteflow/jenkins-vagrant.git
     cd vagrant-jenkins
