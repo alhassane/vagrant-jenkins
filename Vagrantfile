@@ -8,7 +8,10 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure('2') do |config|
     config.vm.box = 'ubuntu/trusty64'
     config.vm.box_url = 'https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box'
-    config.vm.network :forwarded_port, guest: 8080, host:9999
+
+    # Create a private network, which allows host-only access to the machine using a specific IP.
+    config.vm.network :private_network, ip: 192.168.33.30
+
     config.vm.synced_folder ".", "/vagrant", :mount_options => ["uid=5678,gid=65534"]
 
     config.vm.provider :virtualbox do |vb|
