@@ -55,3 +55,19 @@ Use a different provisioners - Chef, Puppet, Salt, Docker (?) to be OS agnostic
 
 ### to get a console as the jenkins
 sudo su – jenkins 
+
+
+# vagrant-sonar
+With requirements satisfied the following three commands will result in Jenkins being available on [http://192.168.33.30:9000](http://192.168.33.30:9000):
+
+## Start
+
+Click on Log in to connect user
+
+Username | Password
+---------|-----------
+admin     | admin   
+
+## Install sonarQube plugins
+Go to 
+    Setting > System > Update center > Available pluginds > PHP plugin

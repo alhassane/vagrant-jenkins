@@ -29,9 +29,6 @@ sudo apt-get -y install jenkins
 #echo "$line" | sudo -u jenkins xargs -P 5 -n 1 wget -nv -T 60 -t 3 -P /var/lib/jenkins/plugins
 #done < "/vagrant/jenkins/plugins"
 
-echo "*** install jenkins plugins ***"
-/vagrant/provisioners/shell/jenkins/jenkins-plugins.sh
-
 echo "*** symlink jenkins jobs ***"
 unlink /vagrant/jenkins/jobs
 sudo rm -rf /var/lib/jenkins/jobs
@@ -59,3 +56,6 @@ sudo apt-get -y autoremove
 
 echo "*** ensure permissions ***"
 sudo chown -R `id jenkins -u`:`id jenkins -g` /var/lib/jenkins
+
+echo "*** install jenkins plugins ***"
+/vagrant/provisioners/shell/jenkins/jenkins-plugins.sh

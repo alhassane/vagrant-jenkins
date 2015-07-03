@@ -20,6 +20,8 @@ Vagrant.configure('2') do |config|
     # Set the default project share
     config.vm.synced_folder ".",  $vm_group, id: "vagrant-root", :nfs => true
     config.vm.synced_folder "./", $vm_www_point, create: false, type: "nfs"
+
+    config.vm.network "forwarded_port", guest: 9000, host: 9010
  
     # Configure Virtualbox
     config.vm.provider "virtualbox" do |v|

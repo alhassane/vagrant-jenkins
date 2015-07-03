@@ -1,6 +1,6 @@
 #!/bin/bash
 
-value=http://localhost:8080
+value="http://localhost:8080"
 
 plugins=(
     'htmlpublisher'
@@ -66,21 +66,23 @@ plugins=(
     'sonargraph-plugin'
 )
 
+TO=/vagrant/jenkins/plugins
+chmod -R 777 $TO
+cd /vagrant/jenkins
+
 # we download client jenkins
 if [ ! -f jenkins-cli.jar ]; then
- wget ${value}/jnlpJars/jenkins-cli.jar
+    wget "$value/jnlpJars/jenkins-cli.jar"
 fi
 
 # Jenkins plugins
-TO=./plugins
-mkdir -p $TO
 for i in "${plugins[@]}"
 do
     echo "Downloading plugin $i"
     if [ ! -f $TO/$i.hpi ]; then
         wget "https://updates.jenkins-ci.org/latest/$i.hpi" -q  -O $TO/$i.hpi
-        java -jar jenkins-cli.jar -s ${value}/ install-plugin $TO/$i.hpi
     fi
+    java -jar jenkins-cli.jar -s ${value}/ install-plugin $TO/$i.hpi
 done
 
 ## we install all plugins
@@ -124,3 +126,16 @@ java -jar jenkins-cli.jar -s ${value}/ restart
 #SCM Sync configuration plugin : Keep sync’ed your config.xml (and other ressources) jenkins/hudson files with a SCM repository
 #WebSVN2 Plugin : This plugin integrates WebSVN Version 2 browser interface for Subversion with Hudson
 #Subversion Tagging Plugin : This plugin automatically performs subversion tagging (technically speaking svn copy) on successful build.
+
+
+#https://updates.jenkins-ci.org/latest/git-client.hpi
+#https://updates.jenkins-ci.org/latest/git.hpi
+#https://updates.jenkins-ci.org/latest/scm-api.hpi
+#https://updates.jenkins-ci.org/latest/ansicolor.hpi
+#https://updates.jenkins-ci.org/latest/googlecode.hpi
+#https://updates.jenkins-ci.org/latest/hipchat-plugin.hpi
+#https://updates.jenkins-ci.org/latest/hipchat.hpi
+#https://updates.jenkins-ci.org/latest/cobertura.hpi
+#https://updates.jenkins-ci.org/latest/ci-game.hpi
+#https://updates.jenkins-ci.org/latest/htmlpublisher.hpi
+
