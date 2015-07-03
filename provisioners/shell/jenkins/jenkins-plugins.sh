@@ -61,6 +61,9 @@ plugins=(
     'mailer'
     'javadoc'
     'findbugs'
+    'sonar'
+    'mashup-portlets-plugin'
+    'sonargraph-plugin'
 )
 
 # we download client jenkins
