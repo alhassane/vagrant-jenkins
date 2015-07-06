@@ -21,7 +21,7 @@ Vagrant.configure('2') do |config|
     config.vm.synced_folder ".",  $vm_group, id: "vagrant-root", :nfs => true
     config.vm.synced_folder "./", $vm_www_point, create: false, type: "nfs"
 
-    config.vm.network "forwarded_port", guest: 9000, host: 9010
+    config.vm.network "forwarded_port", guest: 9000, host: 9000
  
     # Configure Virtualbox
     config.vm.provider "virtualbox" do |v|
