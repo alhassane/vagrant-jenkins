@@ -5,6 +5,9 @@
 
 DISTRIB=$1
 
+sudo apt-get -y update > /dev/null
+sudo apt-get -y dist-upgrade > /dev/null
+
 echo "*****Enable all Startup Applications"
 cd /etc/xdg/autostart
 sed --in-place 's/NoDisplay=true/NoDisplay=false/g' *.desktop
@@ -32,8 +35,20 @@ rm -rf /usr/lib/plugs/GnomeCC/gnomecc-wacom.plug
 echo "*****Install File Compression Libs"
 sudo apt-get -y install unace zip unzip xz-utils p7zip p7zip-full sharutils uudeview mpack arj cabextract file-roller > /dev/null
 
+echo "*****Install python"
+sudo apt-get -y install python-software-properties > /dev/null
+
+echo "*****Install Java 7"
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt-get -y update > /dev/null
+sudo apt-get -y dist-upgrade > /dev/null
+sudo apt-get -y install openjdk-7-jdk openjdk-7-jre > /dev/null
+
+echo "*****Install tomcat 7"
+sudo sudo apt-get -y install tomcat7 tomcat7-common tomcat7-admin libtomcat7-java 
+
 echo "*****Install the latest git Version"
-add-apt-repository ppa:git-core/ppa -y
+sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt-get -y update > /dev/null
 sudo apt-get -y dist-upgrade > /dev/null
 sudo apt-get -y install git git-core  > /dev/null

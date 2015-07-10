@@ -11,7 +11,7 @@ $vm_group = "/vagrant"
 # VM configuration and capacities
 $vm_gui = false # Enable or not GUI
 $vm_www_point = "/var/www"
-$vm_memory = "1024"
-$vm_cpus = "1"
+$vm_memory = "2048"
+$vm_cpus = "2"
 $vm_cpu_cap = "100"
 $vm_ip = "192.168.33.30"
